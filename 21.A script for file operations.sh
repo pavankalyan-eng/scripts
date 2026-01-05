@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # -------------------- CONFIG --------------------
-FILE1="file1.txt"
-FILE2="file2.txt"
-DIR="example_folder"
+FILE1="pavan"
+FILE2="kalyan"
+DIR="linuxx"
 
 # -------------------- SCRIPT START --------------------
 
