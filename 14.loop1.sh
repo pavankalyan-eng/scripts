@@ -11,8 +11,7 @@ validate (){
     echo -e"\e[32m command is failed"
   else
     echo "command sucess"
-
-}
+       }
 
 
 if [ $userid -ne 0 ]
