@@ -24,6 +24,10 @@ then
     echo "please run this script with root"
     exit 1
 fi
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 package1 package2 ..."
+  exit 1
+fi
 
 for package in "$@"
 do 
