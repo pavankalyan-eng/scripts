@@ -1,18 +1,23 @@
 #!/bin/bash
-userid=$(id -u)
-r="\e[31m]"
-g="\e[32m]"
-y="\e[33m]"
-b="\e[34m]"
-echo "userid: $userid"
-validate (){
-  if [ $1 -ne 0]
-  then
-    echo -e"\e[32m command is failed"
-  else
-    echo "command sucess"
-       }
 
+userid=$(id -u)
+
+r="\e[31m"
+g="\e[32m"
+y="\e[33m"
+b="\e[34m"
+n="\e[0m"
+
+echo "userid: $userid"
+
+validate () {
+  if [ $1 -ne 0 ]
+  then
+    echo -e "${r}command failed${n}"
+  else
+    echo -e "${g}command success${n}"
+  fi
+}
 
 if [ $userid -ne 0 ]
 then    
@@ -20,15 +25,15 @@ then
     exit 1
 fi
 
-for package in $@
+for package in "$@"
 do 
-   dnf list installed $package
+   dnf list installed "$package" &>/dev/null
    if [ $? -ne 0 ]
-then    
-    echo " $package not installed going installed"
-    dnf install $package -y
-   validate $? "listing $package"
-else
-    echo " $package installed already"  
-fi 
+   then    
+      echo "$package not installed, installing..."
+      dnf install "$package" -y
+      validate $?
+   else
+      echo "$package already installed"
+   fi 
 done
