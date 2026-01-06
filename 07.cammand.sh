@@ -2,4 +2,4 @@
 DATE=$(date)
 
 
-echo "toady time is $date"
+echo "toady time is $DATE"
