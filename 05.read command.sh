@@ -1,9 +1,9 @@
 #!/bin/bash
 echo "enter your user name"
 
-read    usernmae
+read    username
 
-echo "usernmae entered is :$username"
+echo "username entered is :$username"
 
 
 
