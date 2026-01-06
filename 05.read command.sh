@@ -7,7 +7,7 @@ echo "usernmae entered is :$username"
 
 
 
-echo "enter your password"
+echo "enter your passwd"
 
 read -s -p  passwd
 
