@@ -6,12 +6,13 @@
 LOG_FILE="/var/log/auto_service_recovery.log"
 
 # Service : Port
- declare -A SERVICES=(
+declare -A SERVICES=(
+  ["sshd"]=22
   ["httpd"]=80
-  ["mysql"]=3306
-  ["ftp"]=21
-  ["ssh"]=22
+  ["vsftpd"]=21
+  ["mysqld"]=3306
 )
+
 
 log() {
     echo "$(date '+%F %T') - $1" | tee -a "$LOG_FILE"
