@@ -1,10 +1,10 @@
 #!/bin/bash
 
 mkdir -p /opt/health
-REPORT_FILE="/opt/health/health_$(date +%F_%H-%M-%S).txt"
+Health_file="/opt/health/health_$(date +%F_%H-%M-%S).txt"
 
 # Print to terminal and file
-exec > >(tee -a "$REPORT_FILE") 2>&1
+exec > >(tee -a "$Health_file") 2>&1
 
 echo "===== SYSTEM HEALTH CHECK ====="
 date
@@ -42,6 +42,6 @@ echo "Listing users:"
 cut -d: -f1 /etc/passwd
 echo
 
-echo "Report saved to $REPORT_FILE"
-rsync -avz $REPORT_FILE pavan@192.168.74.140:/opt/backup
+echo "Report saved to $Health_file"
+rsync -avz $Health_file  pavan@192.168.74.140:/opt/health &>> $Health_file
 echo exit 1
