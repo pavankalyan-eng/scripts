@@ -7,10 +7,10 @@ LOG_FILE="/var/log/auto_service_recovery.log"
 
 # Service : Port : Package
 declare -A SERVICES=(
-  ["sshd"]
-  ["httpd"]
-  ["mysqld"]
-  ["vsftpd"]
+  ["sshd"]="22 openssh-server"
+  ["httpd"]="80 httpd"
+  ["mysqld"]="3306 mysql-server"
+  ["vsftpd"]="21 vsftpd"
 )
 
 log() {
@@ -23,11 +23,13 @@ for service in "${!SERVICES[@]}"; do
 
     log "Checking service: $service"
 
-    # 1️⃣ Check if service exists
-    if ! systemctl list-unit-files | grep -q "^$service.service"; then
-        log "⚠ $service not installed. Installing package: $package"
-        dnf install -y "$package" &>>"$LOG_FILE"
-    fi
+   if ! rpm -q "$package" &>/dev/null; then
+    log "⚠ Package $package not installed. Installing..."
+    dnf install -y "$package" &>>"$LOG_FILE"
+else
+    log "✅ Package $package already installed"
+fi
+
 
     # 2️⃣ Enable and start service
     if ! systemctl is-active --quiet "$service"; then
