@@ -29,9 +29,9 @@ validate $?
 
 if [ $? -ne 0 ]
 then    
-    echo " git not installed going installed"
+    echo " mysql not installed going installed"
     dnf install mysql -y
-   validate $? "listing git"
+   validate $? "listing mysql"
 else
     echo "installed already"  
 fi       
