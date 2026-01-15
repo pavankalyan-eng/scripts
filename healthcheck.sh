@@ -1,5 +1,10 @@
 #!/bin/bash
 
+REPORT_FILE="/root/system_report.txt"
+
+# Redirect stdout and stderr to the report file
+exec > "$REPORT_FILE" 2>&1
+
 echo "===== SYSTEM HEALTH CHECK ====="
 date
 echo
@@ -18,23 +23,22 @@ echo
 
 echo "Disk Usage:"
 df -h
-echo 
+echo
 
-echo "ports"
+echo "Ports:"
 netstat -lntp
 echo
 
-echo "installed packages"
+echo "Installed packages:"
 dnf list installed | wc -l
 echo
 
-echo "currently logged in"
-who 
-echo 
-
-echo "listing users"
-cut -d: -f1 /etc/passwd | wc -l
+echo "Currently logged in:"
+who
 echo
-  
 
-  echo > health.txt
+echo "Listing users:"
+cut -d: -f1 /etc/passwd
+echo
+
+echo "Report saved to $REPORT_FILE"
