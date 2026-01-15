@@ -7,10 +7,10 @@ LOG_FILE="/var/log/auto_service_recovery.log"
 
 # Service : Port : Package
 declare -A SERVICES=(
-  ["sshd"]="22 openssh-server"
-  ["httpd"]="80 httpd"
-  ["mysqld"]="3306 mysql-server"
-  ["vsftpd"]="21 vsftpd"
+  ["sshd"]
+  ["httpd"]
+  ["mysqld"]
+  ["vsftpd"]
 )
 
 log() {
