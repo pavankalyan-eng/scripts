@@ -1,10 +1,10 @@
 #!/bin/bash
 
-REPORT_FILE="/opt/health_$(date +%F_%H-%M-%S).txt"
 mkdir -p /opt/health
+REPORT_FILE="/opt/health/health_$(date +%F_%H-%M-%S).txt"
 
-# Print to terminal and save to file
-exec >>(tee -a "$REPORT_FILE") 2>&1
+# Print to terminal and file
+exec > >(tee -a "$REPORT_FILE") 2>&1
 
 echo "===== SYSTEM HEALTH CHECK ====="
 date
@@ -31,7 +31,7 @@ netstat -lntp
 echo
 
 echo "Installed packages:"
-dnf list installed | wc -l
+dnf list installed  | wc -l
 echo
 
 echo "Currently logged in:"
