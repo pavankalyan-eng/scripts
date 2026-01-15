@@ -8,25 +8,37 @@ TIME=$(date)
 # ===== VALIDATE ARGUMENTS =====
 if [ $# -lt 1 ]; then
   echo "Usage: $0 <service1:port1> <service2:port2> ..."
-  echo "Example: ./multi_service_monitor.sh nginx:80 mysql:3306 docker:2375"
+  echo "Example: ./auto_install_service_monitor.sh nginx:80 mysql:3306 git: docker:"
   exit 1
 fi
 
 ALERT=false
 MAIL_BODY="Service Alert on $HOST at $TIME\n\n"
 
-# ===== LOOP THROUGH SERVICES =====
+# ===== LOOP THROUGH ALL SERVICES =====
 for ITEM in "$@"; do
   SERVICE=$(echo "$ITEM" | cut -d':' -f1)
   PORT=$(echo "$ITEM" | cut -d':' -f2)
 
   echo "------------------------------------"
-  echo "Checking service: $SERVICE (Port: $PORT)"
+  echo "Processing service: $SERVICE (Port: $PORT)"
 
+  # ===== CHECK IF PACKAGE IS INSTALLED =====
+  if ! rpm -q "$SERVICE" &>/dev/null; then
+    echo "⚠ $SERVICE is not installed. Installing..."
+    dnf install -y "$SERVICE"
+  else
+    echo "✅ $SERVICE is already installed"
+  fi
+
+  # ===== ENABLE & START SERVICE =====
+  systemctl enable "$SERVICE" --now
+
+  # ===== CHECK SERVICE STATUS =====
   if systemctl is-active --quiet "$SERVICE"; then
     echo "✅ $SERVICE is running"
 
-    # Check port only if port is provided
+    # ===== CHECK PORT IF PROVIDED =====
     if [ -n "$PORT" ]; then
       if ss -tulnp | grep -q ":$PORT"; then
         echo "✅ Port $PORT is listening"
@@ -41,11 +53,8 @@ for ITEM in "$@"; do
   else
     echo "❌ $SERVICE is NOT running"
     ALERT=true
-
     LOGS=$(journalctl -u "$SERVICE" -n 10 --no-pager)
-
-    MAIL_BODY+="Service: $SERVICE\n"
-    MAIL_BODY+="Status : NOT RUNNING\n"
+    MAIL_BODY+="Service: $SERVICE\nStatus : NOT RUNNING\n"
     MAIL_BODY+="Last Logs:\n$LOGS\n"
     MAIL_BODY+="------------------------------------\n"
   fi
