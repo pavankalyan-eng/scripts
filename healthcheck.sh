@@ -1,9 +1,9 @@
 #!/bin/bash
 
-REPORT_FILE="/root/system_report.txt"
+REPORT_FILE="/home _$(date +%F_%H-%M-%S).txt"
 
-# Redirect stdout and stderr to the report file
-exec > "$REPORT_FILE" 2>&1
+# Print to terminal and save to file
+exec >> (tee -a "$REPORT_FILE") 2>&1
 
 echo "===== SYSTEM HEALTH CHECK ====="
 date
