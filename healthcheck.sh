@@ -43,4 +43,5 @@ cut -d: -f1 /etc/passwd
 echo
 
 echo "Report saved to $REPORT_FILE"
+rsync -avz $REPORT_FILE pavan@192.168.74.140:/opt/backup
 echo exit 1
