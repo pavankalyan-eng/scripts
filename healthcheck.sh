@@ -33,4 +33,8 @@ who wc -l
 echo 
 
 echo "listing users"
-cat  | wc -l | cut -d: -f1 /etc/passwd
+cut -d: -f1 /etc/passwd | wc -l
+echo
+  
+
+  echo > health.txt
