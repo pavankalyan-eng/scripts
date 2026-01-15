@@ -11,6 +11,7 @@ declare -A SERVICES=(
   ["httpd"]="80 httpd"
   ["mysqld"]="3306 mysql-server"
   ["vsftpd"]="21 vsftpd"
+  ["nfs-utils"]="2049 nfs"
 )
 
 log() {
