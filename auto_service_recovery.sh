@@ -53,3 +53,6 @@ for service in "${!SERVICES[@]}"; do
 
     log "------------------------------------"
 done
+
+    echo "allport info "
+       nerstat -lntp
