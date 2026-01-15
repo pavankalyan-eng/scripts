@@ -1,6 +1,7 @@
 #!/bin/bash
 
-REPORT_FILE="/home _$(date +%F_%H-%M-%S).txt"
+REPORT_FILE="/opt/health_$(date +%F_%H-%M-%S).txt"
+mkdir -p /opt/health
 
 # Print to terminal and save to file
 exec >> (tee -a "$REPORT_FILE") 2>&1
