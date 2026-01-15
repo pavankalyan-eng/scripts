@@ -6,7 +6,7 @@
 LOG_FILE="/var/log/auto_service_recovery.log"
 
 # Service : Port
- SERVICES=(
+ declare -A SERVICES=(
   ["httpd"]=80
   ["mysql"]=3306
   ["ftp"]=21
