@@ -4,7 +4,7 @@ REPORT_FILE="/opt/health_$(date +%F_%H-%M-%S).txt"
 mkdir -p /opt/health
 
 # Print to terminal and save to file
-exec >> (tee -a "$REPORT_FILE") 2>&1
+exec >>(tee -a "$REPORT_FILE") 2>&1
 
 echo "===== SYSTEM HEALTH CHECK ====="
 date
