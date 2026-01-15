@@ -64,7 +64,7 @@ for ITEM in "$@"; do
   # Check port if provided
   if [ -n "$PORT" ] && [ -n "$SERVICE" ]; then
     echo "Checking port $PORT for $SERVICE..."
-    if ss -tulnp | grep -q ":$PORT"; then
+    if netstat -lntp | grep -q ":$PORT"; then
       echo "✅ Port $PORT is listening"
     else
       echo "❌ Port $PORT is NOT listening"
