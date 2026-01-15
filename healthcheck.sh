@@ -27,3 +27,10 @@ echo
 echo "installed packages"
 dnf list installed | wc -l
 echo
+
+echo "currently logged in"
+who wc -l
+echo 
+
+echo "listing users"
+cat  | wc -l | cut -d: -f1 /etc/passwd
