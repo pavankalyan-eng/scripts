@@ -43,3 +43,4 @@ cut -d: -f1 /etc/passwd
 echo
 
 echo "Report saved to $REPORT_FILE"
+echo exit 1
