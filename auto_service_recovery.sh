@@ -55,4 +55,4 @@ for service in "${!SERVICES[@]}"; do
 done
 
     echo "allport info "
-       nerstat -lntp
+       netstat -lntp
