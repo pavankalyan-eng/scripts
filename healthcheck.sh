@@ -43,5 +43,6 @@ cut -d: -f1 /etc/passwd
 echo
 
 echo "Report saved to $Health_file"
+exit 1
 rsync -avz $Health_file  pavan@192.168.74.140:/opt/health &>> $Health_file
- exit 1
+
