@@ -23,3 +23,7 @@ echo
 echo "ports"
 netstat -lntp
 echo
+
+echo "installed packages"
+dnf list installed | wc -l
+echo
