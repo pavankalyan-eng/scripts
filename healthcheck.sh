@@ -29,7 +29,7 @@ dnf list installed | wc -l
 echo
 
 echo "currently logged in"
-who wc -l
+who 
 echo 
 
 echo "listing users"
