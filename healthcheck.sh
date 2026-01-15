@@ -44,4 +44,4 @@ echo
 
 echo "Report saved to $Health_file"
 rsync -avz $Health_file  pavan@192.168.74.140:/opt/health &>> $Health_file
-echo exit 1
+ exit 1
