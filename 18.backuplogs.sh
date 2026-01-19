@@ -6,7 +6,7 @@
 
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS=$(3:-14)
+DAYS=$(14)
 DATE=$(date)
 
 USAGE(){
@@ -21,12 +21,12 @@ fi                                                                              
                                                                                   #source-dir /home/ec2-user/app-log
                                                                                   #distination-dir /home/ec2-user/backend.log
 
-if [ ! -d $SOURCE_DIR]
+if [ ! -d $SOURCE_DIR ]
 then
     echo "$SOURCE_DIR does not exit .....please check"
 fi
 
-if [ ! -d $DEST_DIR]
+if [ ! -d $DEST_DIR ]
 then
     echo "$DIST_DIR does not exit .....please check"
 fi
@@ -36,13 +36,13 @@ files=$(find $SOURCE_DIRECTORY -name "*access" -mtime +14)
 echo "files: $files"
 
 
-if [ ! -z $files]
+if [ ! -z $files ]
 then 
     echo "files are found"
     ZIP_FILE="$DEST_DIR -$dat/app-loge.zip"
     find $SOURCE_DIRECTORY -name "*access" -mtime +14 | zip "$ZIP_FILE" -@
 
-    if [ -f $ZIP_FILE]
+    if [ -f $ZIP_FILE ]
     then
         echo "successfully zipped"$days
         
