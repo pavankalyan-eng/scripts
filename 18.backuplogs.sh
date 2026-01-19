@@ -6,7 +6,7 @@
 
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS=$(14)
+DAYS= 14
 DATE=$(date)
 
 USAGE(){
@@ -53,6 +53,7 @@ then
             done <<< $files
     else
         echo "zipped unsuccessfully "
+    fi
 else  
     echo " files not found :$DAYS"
 fi
