@@ -32,7 +32,7 @@ then
 fi
 
 
-files=$(find $SOURCE_DIRECTORY -name "*access" -mtime +14)
+files=$(find $SOURCE_DIRECTORY -name "*access*" -mtime +14)
 echo "files: $files"
 
 
