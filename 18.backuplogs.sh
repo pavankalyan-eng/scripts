@@ -6,7 +6,7 @@
 
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS= 14
+DAYS=14
 DATE=$(date)
 
 USAGE(){
@@ -39,7 +39,7 @@ echo "files: $files"
 if [ ! -z $files ]
 then 
     echo "files are found"
-    ZIP_FILE="$DEST_DIR -$dat/app-loge.zip"
+    ZIP_FILE="$DEST_DIR -$dat/back.zip"
     find $SOURCE_DIRECTORY -name "*access" -mtime +14 | zip "$ZIP_FILE" -@
 
     if [ -f $ZIP_FILE ]
