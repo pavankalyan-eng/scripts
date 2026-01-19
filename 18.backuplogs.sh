@@ -36,7 +36,7 @@ files=$(find $SOURCE_DIRECTORY -name "*access*" -mtime +14)
 echo "files: $files"
 
 
-if [ ! -z $files ]
+if [[ ! -z $files ]]
 then 
     echo "files are found"
     ZIP_FILE="$DEST_DIR -$dat/back.zip"
