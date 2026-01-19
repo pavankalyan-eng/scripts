@@ -32,15 +32,15 @@ then
 fi
 
 
-files=$(find $SOURCE_DIRECTORY -name "*.log" -mtime +14)
+files=$(find $SOURCE_DIRECTORY -name "*access" -mtime +14)
 echo "files: $files"
 
 
 if [ ! -z $files]
 then 
     echo "files are found"
-    ZIP_FILE="$DEST_DIR/app-log -$date.zip"
-    find $SOURCE_DIRECTORY -name "*.log" -mtime +14 | zip "$ZIP_FILE" -@
+    ZIP_FILE="$DEST_DIR -$dat/app-loge.zip"
+    find $SOURCE_DIRECTORY -name "*access" -mtime +14 | zip "$ZIP_FILE" -@
 
     if [ -f $ZIP_FILE]
     then
